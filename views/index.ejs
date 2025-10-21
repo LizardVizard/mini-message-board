@@ -1,0 +1,22 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Mini message board</title>
+        <link rel="stylesheet" href="/style.css"/>
+    </head>
+    <body>
+        <div class="messages">
+            <a href="/new"><button>Write a new message!</button></a>
+            <% messages.forEach((msg, index) => { %>
+            <div class="message">
+                <div class="header">
+                    <div class="name"><%=msg.user%></div>
+                    <div class="date"><%=msg.added.toDateString()%></div>
+                </div>
+                <div class="text"><%= msg.text %></div>
+                <a href="/message/<%= index %>"><button>View details</button></a>
+            </div>
+            <% }) %>
+        </div>
+    </body>
+</html>

@@ -1,0 +1,74 @@
+.messages {
+  display: flex;
+  gap: 20px;
+}
+
+.messages > a {
+  width: 200px;
+}
+
+.messages button {
+  height: 100%;
+  width: 100%;
+}
+
+.message {
+  display: flex;
+  flex-direction: column;
+  width: 200px;
+  gap: 5px;
+}
+
+.message > .header {
+  display: flex;
+  justify-content: space-between;
+}
+
+.message > .text {
+  height: 150px;
+  background-color: lightgrey;
+  padding: 5px;
+  border-radius: 3px;
+}
+
+body > * {
+  margin: auto;
+}
+
+body > h2 {
+  width: max-content;
+  margin-bottom: 20px;
+}
+
+form {
+  /* margin: auto; */
+  display: flex;
+  flex-direction: column;
+  width: 250px;
+  gap: 15px;
+}
+
+form > label {
+  width: 100px;
+}
+
+form textarea {
+  min-height: 200px;
+  min-width: 200px;
+}
+
+.message-info {
+  display: flex;
+  flex-direction: column;
+  width: 300px;
+}
+
+.message-info > h2,
+.message-info > h4 {
+  margin-bottom: 0px;
+}
+.message-info > div {
+  background-color: lightgrey;
+  padding: 1rem;
+  min-height: 150px;
+}

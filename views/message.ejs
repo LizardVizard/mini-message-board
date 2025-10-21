@@ -1,0 +1,15 @@
+<!doctype html>
+<html>
+    <head>
+        <title> Mini message board</title>
+        <link rel="stylesheet" href="/style.css"/>
+    </head>
+    <body>
+        <div class="message-info">
+            <h2>By user: <%= message.user%></h2>
+            <h4>Date added: <p><%= message.added%></p></h4>
+            <p>Message body:</p>
+            <div><%= message.text%></div>
+        </div>
+    </body>
+</html>
