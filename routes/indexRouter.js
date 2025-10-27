@@ -11,18 +11,4 @@ indexRouter
   .get(indexController.getNew)
   .post(indexController.postNew);
 
-// indexRouter.get("/new", (req, res) => {
-//   res.render("form");
-// });
-//
-// indexRouter.post("/new", (req, res) => {
-//   console.log("Adding a user: "req.body);
-//   messages.push({
-//     user: req.body.name,
-//     text: req.body.text,
-//     added: new Date(),
-//   });
-//   res.redirect("/");
-// });
-
 export default indexRouter;

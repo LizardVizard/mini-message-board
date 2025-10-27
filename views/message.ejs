@@ -9,11 +9,12 @@
         <% if (!message) { %>
             <h2>No message found</h2>
         <% } else { %>
-            <h2>By user: <%= message.user%></h2>
+            <h2>By user: <%= message.username%></h2>
             <h4>Date added: <p><%= message.added%></p></h4>
             <p>Message body:</p>
             <div><%= message.text%></div>
         <% } %>
+            <p><a tabindex="-1" href="/"><button>Go back to all messages</button></a></p>
         </div>
     </body>
 </html>

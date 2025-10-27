@@ -6,17 +6,22 @@
     </head>
     <body>
         <div class="messages">
-            <a href="/new"><button>Write a new message!</button></a>
-            <% messages.forEach((msg, index) => { %>
-            <div class="message">
-                <div class="header">
-                    <div class="name"><%=msg.user%></div>
-                    <div class="date"><%=msg.added.toDateString()%></div>
-                </div>
-                <div class="text"><%= msg.text %></div>
-                <a href="/message/<%= index %>"><button>View details</button></a>
-            </div>
-            <% }) %>
+            <a tabindex="-1" href="/new"><button>Write a new message!</button></a>
+                <% if ( messages.length > 0) { %>
+                    <% messages.forEach((msg, index) => { %>
+                    <div class="message">
+                        <div class="header">
+                            <div class="name"><%=msg.username%></div>
+                            <div class="date"><%=msg.added.toDateString()%></div>
+                        </div>
+                        <div class="text"><%= msg.text %></div>
+                        <a tabindex="-1" href="/message/<%= index+1 %>"><button>View details</button></a>
+                    </div>
+                    <% }) %>
+            <% } else {%>
+                <h2>No messages</h2>
+
+            <%} %>
         </div>
     </body>
 </html>
