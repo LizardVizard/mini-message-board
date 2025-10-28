@@ -51,7 +51,6 @@ const postNew = [
       });
       return;
     }
-    console.log("Adding a user: ", req.body);
 
     const user = {
       username: username,
