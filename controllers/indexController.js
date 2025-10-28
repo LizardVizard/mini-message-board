@@ -1,4 +1,29 @@
 import db from "../db/queries.js";
+import { body, validationResult, matchedData } from "express-validator";
+
+const inputValidation = [
+  body("username")
+    .trim()
+    .notEmpty()
+    .withMessage("Name should not be empty")
+    .bail()
+    .isAlpha()
+    .withMessage("Name should only contain english alphabet letters.")
+    .bail()
+    .isLength({ min: 1, max: 255 })
+    .withMessage("Name must be between 1 and 255 characters")
+    .bail(),
+  body("text")
+    .trim()
+    .notEmpty()
+    .withMessage("Message should not be empty")
+    .bail()
+    .isAlphanumeric()
+    .withMessage(
+      "Message should only contain english alphabet letters and number.",
+    )
+    .bail(),
+];
 
 const getIndex = async (req, res) => {
   const messages = await db.getAllMessages();
@@ -11,20 +36,32 @@ const getIndex = async (req, res) => {
 };
 
 const getNew = (req, res) => {
-  res.render("form");
+  res.render("form", { oldInput: {} });
 };
 
-const postNew = async (req, res) => {
-  console.log("Adding a user: ", req.body);
+const postNew = [
+  inputValidation,
+  async (req, res) => {
+    const { username, text } = matchedData(req);
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.render("form", {
+        oldInput: { username, text },
+        errors: errors.array({ onlyFirstError: true }),
+      });
+      return;
+    }
+    console.log("Adding a user: ", req.body);
 
-  const user = {
-    username: req.body.name,
-    text: req.body.text,
-    added: new Date().toISOString(),
-  };
-  await db.insertMessage(user);
-  res.redirect("/");
-};
+    const user = {
+      username: username,
+      text: text,
+      added: new Date().toISOString(),
+    };
+    await db.insertMessage(user);
+    res.redirect("/");
+  },
+];
 
 const getMessageById = async (req, res) => {
   const messages = await db.getMessageById(req.params.id);

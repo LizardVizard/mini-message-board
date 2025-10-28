@@ -7,8 +7,9 @@
     <body>
         <h2>Send a message</h2>
         <form method="POST" action="/new">
-            <label>Name: <input type="text" name="name"></input></label>
-            <label>Message: <textarea name="text"></textarea></label>
+            <label>Name: <input type="text" name="username" value="<%= oldInput?.username || ''%>"></input></label>
+            <label>Message: <textarea name="text"><%= oldInput?.text || "" %></textarea></label>
+            <%- include("partials/errors.ejs")%>
             <button>Send</button>
         </form>
     </body>
