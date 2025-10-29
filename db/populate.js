@@ -1,7 +1,15 @@
 import { Client } from "pg";
 import { CONNECTION_SETTINGS } from "./pool.js";
 
-const query = `
+const createTableQuery = `
+CREATE TABLE IF NOT EXISTS messages (
+id INTEGER PRIMARY KEY GENERATED ALWAYS AS IDENTITY,
+username VARCHAR(255),
+text TEXT,
+added TIMESTAMP
+);
+`;
+const insertValuesQuery = `
 INSERT INTO messages (text, username, added ) VALUES
 ($1, $2, $3),
 ($4, $5, $6)
@@ -20,7 +28,8 @@ async function main() {
   await client.connect();
 
   try {
-    await client.query(query, values);
+    await client.query(createTableQuery);
+    await client.query(insertValuesQuery, values);
   } catch (err) {
     console.log(err);
   } finally {
